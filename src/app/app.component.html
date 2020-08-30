@@ -1,0 +1,8 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="flex-start center">
+  <button mat-button *ngFor="let item of items; trackBy: trackBy" [routerLink]=item.route
+    routerLinkActive="active-route">{{item.name}}
+  </button>
+</mat-toolbar>
+<div class="main">
+  <router-outlet></router-outlet>
+</div>

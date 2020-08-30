@@ -1,0 +1,11 @@
+<mat-form-field>
+  <mat-label>Choose provider</mat-label>
+  <mat-select [value]="selectedProvider$ | async" (selectionChange)="handleSelectionChange($event)">
+    <mat-option *ngFor="let provider of providers$ | async" [value]="provider">{{provider}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<stms-data-table [loading]="loading$ | async" [columns]="columns$ | async" [checkedRows]="favorites$ | async"
+  [data]="items$ | async" (sortChanged)="handleSortChange($event)" (rowChecked)="handleRowChecked($event)"
+  (commented)="handleCommented($event)">
+</stms-data-table>

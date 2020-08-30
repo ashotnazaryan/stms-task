@@ -1,0 +1,10 @@
+:host {
+  display: block;
+}
+.main {
+  padding: 20px;
+}
+.active-route {
+  pointer-events: none;
+  color: #ff0000; // TODO move to variables.scss
+}

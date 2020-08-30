@@ -1,0 +1,39 @@
+<mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
+<div fxLayoutAlign="center center" *ngIf="!loading && !data.length" class="empty-state">
+  No available data
+</div>
+<ng-container *ngIf="!loading && data.length">
+  <form [formGroup]="form">
+    <mat-table matSort matSortDisableClear [dataSource]="data" [matSortActive]="sortConfig.sort"
+      [matSortDirection]="sortConfig.direction" (matSortChange)="hadleSortChange($event)" class="data-table">
+      <ng-container *ngFor="let column of columns; trackBy: trackBy" [matColumnDef]="column.field">
+        <mat-header-cell mat-sort-header [style.flex]="column.flex" [disabled]="!column.sortable" *matHeaderCellDef>
+          {{column.title}}
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row" [style.flex]="column.flex">
+          <ng-container [ngSwitch]="column.type">
+            <ng-container *ngSwitchCase="ColumnType.checkbox">
+              <mat-checkbox (click)="$event.stopPropagation()" [checked]="checkedRows.includes(row.id)"
+                (change)="handleCheckboxChange($event, row)">
+              </mat-checkbox>
+            </ng-container>
+            <ng-container *ngSwitchCase="ColumnType.comment">
+              <div fxLayout="row" fxLayoutAlign="flex-start center">
+                <mat-form-field>
+                  <mat-label>Leave a comment</mat-label>
+                  <textarea matInput formControlName={{row.id}}></textarea>
+                </mat-form-field>
+                <button mat-raised-button color="primary" class="comment-button" (click)="addComment(row)">Save</button>
+              </div>
+            </ng-container>
+            <ng-container *ngSwitchDefault>
+              {{row[column.field]}}
+            </ng-container>
+          </ng-container>
+        </mat-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+    </mat-table>
+  </form>
+</ng-container>
