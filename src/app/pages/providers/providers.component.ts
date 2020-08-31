@@ -1,15 +1,16 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { MatSelectChange } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs/internal/Observable';
 import { BehaviorSubject } from 'rxjs/internal/BehaviorSubject';
 import { of } from 'rxjs/internal/observable/of';
-import { MatSnackBar } from '@angular/material/snack-bar';
 
 import { PROVIDERS_LABELS, ProviderType } from 'src/app/shared/constants/provider';
 import { Column, SortType, ColumnType, SortConfig } from 'src/app/shared/components/data-table/data-table.types';
 import { GetItems, AddToFavorites, RemoveFromFavorites, GetProvider, AddComment } from 'src/app/store/action';
-import { Provider, Favorite } from 'src/app/shared/models/provider';
+import { Provider } from 'src/app/shared/models/provider';
+import { Favorite } from 'src/app/shared/models/favorite';
 import { AppState } from 'src/app/store/reducer';
 
 @Component({
@@ -68,6 +69,7 @@ export class ProvidersComponent implements OnInit {
 
   handleSortChange = (event: SortConfig) => {
     // Here I should call api for sorting, but my chosen providers don't provide sorting capability
+    // My event object consists of sorting query params which I would send to api
     console.log(event);
     this.store.dispatch(new GetItems(this.selectedProvider.value));
   }

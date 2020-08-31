@@ -3,7 +3,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { of } from 'rxjs/internal/observable/of';
 import { Store, select } from '@ngrx/store';
 
-import { Favorite } from 'src/app/shared/models/provider';
+import { Favorite } from 'src/app/shared/models/favorite';
 import { AppState } from 'src/app/store/reducer';
 import { Column, SortType } from 'src/app/shared/components/data-table/data-table.types';
 

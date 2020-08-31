@@ -1,7 +1,8 @@
 import { ActionReducerMap } from '@ngrx/store';
 
 import { Actions, ActionTypes } from './action';
-import { Provider, Favorite } from '../shared/models/provider';
+import { Provider } from '../shared/models/provider';
+import { Favorite } from '../shared/models/favorite';
 import { ProviderType } from '../shared/constants/provider';
 
 export interface AppState {

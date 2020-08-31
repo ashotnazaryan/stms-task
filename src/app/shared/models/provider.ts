@@ -10,11 +10,4 @@ export interface Beer {
   first_brewed: string;
 }
 
-export interface Favorite {
-  id: string;
-  name: string;
-  date: string;
-  comment: string;
-}
-
 export type Provider = (Beer & Movie) & { comment?: string };
